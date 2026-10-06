@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Just a moment...</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1d1d1d;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .logo {
+      margin-bottom: 34px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #111;
+    }
+
+    .logo span {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin-right: 8px;
+      vertical-align: -5px;
+      background: #f38020;
+      clip-path: polygon(
+        50% 0%,
+        100% 25%,
+        82% 100%,
+        18% 100%,
+        0% 25%
+      );
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 5vw, 34px);
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: -0.6px;
+    }
+
+    .description {
+      margin: 0;
+      max-width: 540px;
+      font-size: 16px;
+      line-height: 1.55;
+      color: #555;
+    }
+
+    .checking {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 30px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid #d9d9d9;
+      border-top-color: #f38020;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+
+    .ray {
+      margin-top: 34px;
+      height: 1px;
+      width: 100%;
+      background: #eee;
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .footer strong {
+      color: #444;
+      font-weight: 500;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        align-items: flex-start;
+        padding-top: 100px;
+      }
+
+      .logo {
+        margin-bottom: 28px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+    <main class="content">
+
+      <h1>Just a moment...</h1>
+
+      <p class="description">
+        We are verifying your connection before continuing.
+        This process should only take a few seconds.
+      </p>
+
+      <div class="checking">
+        <div class="spinner"></div>
+        <span>Checking your browser...</span>
+      </div>
+
+      <div class="ray"></div>
+
+      <div class="footer">
+        <strong>Security verification</strong><br>
+        Please wait while we verify your connection.
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
