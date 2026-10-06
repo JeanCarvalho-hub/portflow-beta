@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -37,10 +37,6 @@
       overflow: hidden;
     }
 
-    /* =====================================================
-       TELAS
-    ===================================================== */
-
     .screen {
       position: fixed;
       inset: 0;
@@ -63,10 +59,6 @@
       opacity: 1;
       visibility: visible;
     }
-
-    /* =====================================================
-       PORTFLOW
-    ===================================================== */
 
     .portflow-screen {
       text-align: center;
@@ -152,10 +144,6 @@
 
       animation: spin 0.8s linear infinite;
     }
-
-    /* =====================================================
-       TELA DE VERIFICAÇÃO
-    ===================================================== */
 
     .verification-screen {
       justify-content: flex-start;
@@ -280,10 +268,6 @@
       color: #444444;
     }
 
-    /* =====================================================
-       ANIMAÇÕES
-    ===================================================== */
-
     @keyframes portflowEnter {
       from {
         opacity: 0;
@@ -301,10 +285,6 @@
         transform: rotate(360deg);
       }
     }
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
 
     @media (max-width: 600px) {
 
@@ -347,10 +327,6 @@
 
 <body>
 
-  <!-- =====================================================
-       PORTFLOW
-  ====================================================== -->
-
   <section
     id="portflowScreen"
     class="screen portflow-screen active"
@@ -380,11 +356,6 @@
 
   </section>
 
-
-  <!-- =====================================================
-       VERIFICAÇÃO
-  ====================================================== -->
-
   <section
     id="verificationScreen"
     class="screen verification-screen"
@@ -392,17 +363,14 @@
 
     <main class="verification-content">
 
-
       <h1>
         Just a moment...
       </h1>
-
 
       <p class="description">
         We are verifying your connection before continuing.
         This process should only take a few seconds.
       </p>
-
 
       <div class="checking">
 
@@ -414,9 +382,7 @@
 
       </div>
 
-
       <div class="separator"></div>
-
 
       <div class="verification-footer">
 
@@ -434,27 +400,15 @@
 
   </section>
 
-
   <script>
 
-    /*
-     * Tempo que o PortFlow permanece visível.
-     * 3500 = 3,5 segundos
-     */
     const TEMPO_PORTFLOW = 3500;
-
 
     const portflowScreen =
       document.getElementById("portflowScreen");
 
     const verificationScreen =
       document.getElementById("verificationScreen");
-
-
-    /*
-     * Após o tempo definido,
-     * troca para a tela de verificação.
-     */
 
     setTimeout(() => {
 
@@ -468,4 +422,3 @@
 
 </body>
 </html>
-```
