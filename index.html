@@ -1,10 +1,15 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Just a moment...</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>PortFlow</title>
 
   <style>
     * {
@@ -16,101 +21,279 @@
       margin: 0;
       width: 100%;
       min-height: 100%;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Helvetica, Arial, sans-serif;
-      background: #fff;
-      color: #1d1d1d;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      background: #ffffff;
+      color: #111827;
     }
 
-    .page {
-      min-height: 100vh;
+    body {
+      overflow: hidden;
+    }
+
+    /* =====================================================
+       TELAS
+    ===================================================== */
+
+    .screen {
+      position: fixed;
+      inset: 0;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+
+      background: #ffffff;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
     }
 
-    .content {
-      width: 100%;
-      max-width: 600px;
+    .screen.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .logo {
-      margin-bottom: 34px;
-      font-size: 26px;
+    /* =====================================================
+       PORTFLOW
+    ===================================================== */
+
+    .portflow-screen {
+      text-align: center;
+      background-color: #1d1d1d;
+    }
+
+    .portflow-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      transform: translateY(10px);
+      opacity: 0;
+
+      animation: portflowEnter 1s ease forwards;
+    }
+
+    .portflow-logo {
+      width: 76px;
+      height: 76px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 22px;
+
+      border-radius: 18px;
+
+      background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+      );
+
+      color: #ffffff;
+
+      font-size: 31px;
       font-weight: 700;
-      letter-spacing: -1px;
-      color: #111;
+
+      box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.18);
     }
 
-    .logo span {
-      display: inline-block;
+    .portflow-name {
+      margin: 0;
+
+      font-size: 32px;
+      font-weight: 700;
+
+      letter-spacing: -1px;
+
+      color: #f4f4f5;
+    }
+
+    .portflow-description {
+      margin: 8px 0 0;
+
+      font-size: 14px;
+
+      color: #6b7280;
+    }
+
+    .initializing {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      margin-top: 30px;
+
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .small-spinner {
+      width: 16px;
+      height: 16px;
+
+      border: 2px solid #e5e7eb;
+      border-top-color: #2563eb;
+
+      border-radius: 50%;
+
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* =====================================================
+       TELA DE VERIFICAÇÃO
+    ===================================================== */
+
+    .verification-screen {
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      padding-top: 13vh;
+    }
+
+    .verification-content {
+      width: 100%;
+      max-width: 650px;
+
+      margin-left: 8%;
+      margin-right: 8%;
+    }
+
+    .security-brand {
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 34px;
+
+      font-size: 21px;
+      font-weight: 700;
+
+      color: #111827;
+    }
+
+    .security-icon {
       width: 25px;
       height: 25px;
-      margin-right: 8px;
-      vertical-align: -5px;
+
+      margin-right: 9px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       background: #f38020;
-      clip-path: polygon(
-        50% 0%,
-        100% 25%,
-        82% 100%,
-        18% 100%,
-        0% 25%
-      );
+
+      border-radius: 5px;
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    h1 {
+    .verification-content h1 {
       margin: 0 0 18px;
-      font-size: clamp(28px, 5vw, 34px);
+
+      font-size: clamp(28px, 5vw, 35px);
+
       line-height: 1.25;
+
       font-weight: 500;
+
       letter-spacing: -0.6px;
+
+      color: #1d1d1d;
     }
 
     .description {
       margin: 0;
-      max-width: 540px;
+
+      max-width: 550px;
+
       font-size: 16px;
-      line-height: 1.55;
-      color: #555;
+
+      line-height: 1.6;
+
+      color: #555555;
     }
 
     .checking {
       display: flex;
       align-items: center;
       gap: 12px;
+
       margin-top: 30px;
+
       font-size: 15px;
-      color: #333;
+
+      color: #333333;
     }
 
     .spinner {
       width: 20px;
       height: 20px;
-      border: 3px solid #d9d9d9;
-      border-top-color: #f38020;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+
       flex-shrink: 0;
+
+      border: 3px solid #dedede;
+      border-top-color: #f38020;
+
+      border-radius: 50%;
+
+      animation: spin 0.8s linear infinite;
     }
 
-    .ray {
-      margin-top: 34px;
-      height: 1px;
+    .separator {
       width: 100%;
-      background: #eee;
+      height: 1px;
+
+      margin-top: 34px;
+
+      background: #eeeeee;
     }
 
-    .footer {
+    .verification-footer {
       margin-top: 18px;
+
       font-size: 12px;
-      color: #777;
+
       line-height: 1.6;
+
+      color: #777777;
     }
 
-    .footer strong {
-      color: #444;
+    .verification-footer strong {
       font-weight: 500;
+      color: #444444;
+    }
+
+    /* =====================================================
+       ANIMAÇÕES
+    ===================================================== */
+
+    @keyframes portflowEnter {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes spin {
@@ -119,17 +302,39 @@
       }
     }
 
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
     @media (max-width: 600px) {
-      .page {
-        align-items: flex-start;
-        padding-top: 100px;
+
+      .portflow-logo {
+        width: 68px;
+        height: 68px;
+
+        font-size: 27px;
+
+        border-radius: 16px;
       }
 
-      .logo {
+      .portflow-name {
+        font-size: 28px;
+      }
+
+      .verification-screen {
+        padding-top: 90px;
+      }
+
+      .verification-content {
+        margin-left: 24px;
+        margin-right: 24px;
+      }
+
+      .security-brand {
         margin-bottom: 28px;
       }
 
-      h1 {
+      .verification-content h1 {
         font-size: 28px;
       }
 
@@ -142,30 +347,125 @@
 
 <body>
 
-  <div class="page">
-    <main class="content">
+  <!-- =====================================================
+       PORTFLOW
+  ====================================================== -->
 
-      <h1>Just a moment...</h1>
+  <section
+    id="portflowScreen"
+    class="screen portflow-screen active"
+  >
+
+    <div class="portflow-content">
+
+      <h1 class="portflow-name">
+        PortFlow
+      </h1>
+
+      <p class="portflow-description">
+        Plataforma de monitoramento e gerenciamento
+      </p>
+
+      <div class="initializing">
+
+        <div class="small-spinner"></div>
+
+        <span>
+          Inicializando ambiente...
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       VERIFICAÇÃO
+  ====================================================== -->
+
+  <section
+    id="verificationScreen"
+    class="screen verification-screen"
+  >
+
+    <main class="verification-content">
+
+
+      <h1>
+        Just a moment...
+      </h1>
+
 
       <p class="description">
         We are verifying your connection before continuing.
         This process should only take a few seconds.
       </p>
 
+
       <div class="checking">
+
         <div class="spinner"></div>
-        <span>Checking your browser...</span>
+
+        <span>
+          Checking your browser...
+        </span>
+
       </div>
 
-      <div class="ray"></div>
 
-      <div class="footer">
-        <strong>Security verification</strong><br>
+      <div class="separator"></div>
+
+
+      <div class="verification-footer">
+
+        <strong>
+          Security verification
+        </strong>
+
+        <br>
+
         Please wait while we verify your connection.
+
       </div>
 
     </main>
-  </div>
+
+  </section>
+
+
+  <script>
+
+    /*
+     * Tempo que o PortFlow permanece visível.
+     * 3500 = 3,5 segundos
+     */
+    const TEMPO_PORTFLOW = 3500;
+
+
+    const portflowScreen =
+      document.getElementById("portflowScreen");
+
+    const verificationScreen =
+      document.getElementById("verificationScreen");
+
+
+    /*
+     * Após o tempo definido,
+     * troca para a tela de verificação.
+     */
+
+    setTimeout(() => {
+
+      portflowScreen.classList.remove("active");
+
+      verificationScreen.classList.add("active");
+
+    }, TEMPO_PORTFLOW);
+
+  </script>
 
 </body>
 </html>
+```
